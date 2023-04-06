@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chuck Norris Joke</title>
+    <!-- Imports goes here -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+</head>
+
+<body class="bg-purple-500 p-4 mt-10">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-4">
+        <!-- Jokes heading, output and button goes here -->
+        <h1 class="text-3xl font-bold mb-4">Chuck Norris Joke</h1>
+        <div id="output" class="text-lg mb-4"></div>
+        <button class="bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="getJoke()">
+            Get Joke
+        </button>
+    </div>
+
+    <script>
+        //Business logic for api call goes here
+        const getJoke = () => {
+            axios
+                .get("https://api.chucknorris.io/jokes/random")
+                .then((response) => {
+                    document.getElementById("output").innerHTML = response.data.value;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        };
+    </script>
+</body>
+
+</html>
